@@ -19,7 +19,7 @@ void BackPack::ReadInput(string dir)
     Result = Res;
     cout << "\n=== END READINPUT ===" << endl;
 }
-bool BackPack::Algorithm(object combo, int w, int index, int i)
+bool BackPack::Algorithm(object combo, int w, int index, int i, bool print)
 {
     object tmp;
     tmp = combo;
@@ -35,7 +35,9 @@ bool BackPack::Algorithm(object combo, int w, int index, int i)
         if (it != Combinations.end())
             return false;
         Combinations.push_back(tmp);
-        cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
+        if (print == true) {
+            cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
+        }
         tmpW = tmp.number;
     }
     else if (i != index && w <= W)
@@ -49,11 +51,13 @@ bool BackPack::Algorithm(object combo, int w, int index, int i)
         if (tmp.number <= W)
         {
             Combinations.push_back(tmp);
-            cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
+            if (print == true) {
+                cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
+            }
             tmpW = tmp.number;
         }
     }
-    return i < N - 1 && Algorithm(tmp, tmpW, index, i + 1) || i < N - 1 && Algorithm(combo, w, index, i + 1) || index < N - 1 && Algorithm(combo, w, index + 1, i);
+    return i < N - 1 && Algorithm(tmp, tmpW, index, i + 1,print) || i < N - 1 && Algorithm(combo, w, index, i + 1,print) || index < N - 1 && Algorithm(combo, w, index + 1, i,print);
 }
 void BackPack::GoRecursive()
 {
@@ -63,5 +67,17 @@ void BackPack::GoRecursive()
     combo.number = 0;
     combo.cost = 0;
     Algorithm(combo,0);
+    object maxcombo;
+    maxcombo.name = "";
+    maxcombo.number = 10;
+    maxcombo.cost = 0;
+    for (auto i : Combinations)
+        if (i.cost >= maxcombo.cost)
+        {
+            maxcombo.name = i.name;
+            maxcombo.number = i.number;
+            maxcombo.cost = i.cost;
+        }
+    cout << "\nThe best option: " << maxcombo.name << " " << maxcombo.number << " " << maxcombo.cost << "\n" << endl;
     cout << "\n=== COMBINATIONS ARE DISPLAYED ===\n" << endl;
 }
