@@ -58,7 +58,13 @@ bool BackPack::Algorithm(object combo, int w, int index, int i, bool print)
             tmpW = tmp.number;
         }
     }
-    return i < N - 1 && Algorithm(tmp, tmpW, index, i + 1,print) || i < N - 1 && Algorithm(combo, w, index, i + 1,print) || index < N - 1 && Algorithm(combo, w, index + 1, i,print);
+    if (i < N - 1)
+    {
+        Algorithm(tmp, tmpW, index, i + 1, print);
+        Algorithm(combo, w, index, i + 1, print);
+        if (index < N - 1)
+            Algorithm(combo, w, index + 1, i, print);
+    }
 }
 void BackPack::GoRecursive()
 {
