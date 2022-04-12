@@ -21,6 +21,6 @@ public:
     vector<object> Combinations;
     BackPack() {}
     void ReadInput(string);
-    bool Algorithm(object combo, int w, int index = 0, int i = 0, bool prinfFlag = true);
+    bool Algorithm(object combo, int w, int index = 0, bool prinfFlag = true);
     void GoRecursive();
 };

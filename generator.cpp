@@ -19,52 +19,28 @@ void BackPack::ReadInput(string dir)
     Result = Res;
     cout << "\n=== END READINPUT ===" << endl;
 }
-bool BackPack::Algorithm(object combo, int w, int index, int i, bool print)
+bool BackPack::Algorithm(object combo, int w, int index, bool print)
 {
     object tmp;
     tmp = combo;
     int tmpW = w;
-    if (i == 0)
+    tmp.name += " " + Result[index].name;
+    tmp.number += Result[index].number;
+    tmp.cost += Result[index].cost;
+    if (tmp.number <= W)
     {
-        tmp.name += " " + Result[index].name;
-        tmp.number += Result[index].number;
-        tmp.cost += Result[index].cost;
-        vector<object>::iterator it = find(Combinations.begin(), Combinations.end(), tmp);
-        if (it != Combinations.end())
-            return false;
-        if (tmp.number <= W)
-        {
-            Combinations.push_back(tmp);
-            if (print == true) {
-                cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
-            }
-            tmpW = tmp.number;
+        Combinations.push_back(tmp);
+        if (print == true) {
+            cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
         }
+        tmpW = tmp.number;
     }
-    else if (i != index)
+    if (index < N - 1)
     {
-        tmp.name += " " + Result[i].name;
-        tmp.number += Result[i].number;
-        tmp.cost += Result[i].cost;
-        vector<object>::iterator it = find(Combinations.begin(), Combinations.end(), tmp);
-        if (it != Combinations.end())
-            return false;
-        if (tmp.number <= W)
-        {
-            Combinations.push_back(tmp);
-            if (print == true) {
-                cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
-            }
-            tmpW = tmp.number;
-        }
+        Algorithm(tmp, tmpW, index + 1, print);
+        Algorithm(combo, w, index + 1, print);
     }
-    if (i < N - 1)
-    {
-        Algorithm(tmp, tmpW, index, i + 1, print);
-        Algorithm(combo, w, index, i + 1, print);
-        if (index < N - 1)
-            Algorithm(combo, w, index + 1, i, print);
-    }
+    else return false;
 }
 void BackPack::GoRecursive()
 {
