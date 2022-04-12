@@ -10,9 +10,6 @@ struct object {
     int number;
     double cost;
     string name;
-    bool operator == (const object& other) const {
-        return tie(number, cost, name) == tie(other.number, other.cost, other.name);
-    }
 };
 class BackPack {
 public:
