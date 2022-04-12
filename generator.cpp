@@ -29,18 +29,19 @@ bool BackPack::Algorithm(object combo, int w, int index, int i, bool print)
         tmp.name += " " + Result[index].name;
         tmp.number += Result[index].number;
         tmp.cost += Result[index].cost;
-        if (tmp.number > W)
-            return false;
         vector<object>::iterator it = find(Combinations.begin(), Combinations.end(), tmp);
         if (it != Combinations.end())
             return false;
-        Combinations.push_back(tmp);
-        if (print == true) {
-            cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
+        if (tmp.number <= W)
+        {
+            Combinations.push_back(tmp);
+            if (print == true) {
+                cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
+            }
+            tmpW = tmp.number;
         }
-        tmpW = tmp.number;
     }
-    else if (i != index && w <= W)
+    else if (i != index)
     {
         tmp.name += " " + Result[i].name;
         tmp.number += Result[i].number;
