@@ -24,11 +24,11 @@ bool BackPack::Algorithm(object combo, int w, int index, bool print)
     object tmp;
     tmp = combo;
     int tmpW = w;
-    tmp.name += " " + Result[index].name;
     tmp.number += Result[index].number;
-    tmp.cost += Result[index].cost;
     if (tmp.number <= W)
     {
+        tmp.name += " " + Result[index].name;
+        tmp.cost += Result[index].cost;
         Combinations.push_back(tmp);
         if (print == true) {
             cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
