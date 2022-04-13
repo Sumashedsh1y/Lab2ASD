@@ -19,28 +19,24 @@ void BackPack::ReadInput(string dir)
     Result = Res;
     cout << "\n=== END READINPUT ===" << endl;
 }
-bool BackPack::Algorithm(object combo, int w, int index, bool print)
+bool BackPack::Algorithm(object combo, int index, bool print)
 {
-    object tmp;
-    tmp = combo;
-    int tmpW = w;
-    tmp.number += Result[index].number;
-    if (tmp.number <= W)
+    if (index == N)
     {
+            Combinations.push_back(combo);
+            if (print == true && combo.name!="")
+                cout << combo.name << " " << combo.number << " " << combo.cost << endl;
+            return false;
+    }
+    if (combo.number + Result[index].number <= W) {
+        object tmp;
+        tmp = combo;
         tmp.name += " " + Result[index].name;
+        tmp.number += Result[index].number;
         tmp.cost += Result[index].cost;
-        Combinations.push_back(tmp);
-        if (print == true) {
-            cout << tmp.name << " " << tmp.number << " " << tmp.cost << endl;
-        }
-        tmpW = tmp.number;
+        Algorithm(tmp, index + 1, print);
     }
-    if (index < N - 1)
-    {
-        Algorithm(tmp, tmpW, index + 1, print);
-        Algorithm(combo, w, index + 1, print);
-    }
-    else return false;
+    Algorithm(combo, index + 1, print);
 }
 void BackPack::GoRecursive()
 {
@@ -49,7 +45,7 @@ void BackPack::GoRecursive()
     combo.name = "";
     combo.number = 0;
     combo.cost = 0;
-    Algorithm(combo,0);
+    Algorithm(combo);
     object maxcombo;
     maxcombo.name = "";
     maxcombo.number = 10;
@@ -62,5 +58,5 @@ void BackPack::GoRecursive()
             maxcombo.cost = i.cost;
         }
     cout << "\nThe best option: " << maxcombo.name << " " << maxcombo.number << " " << maxcombo.cost << "\n" << endl;
-    cout << "\n=== COMBINATIONS ARE DISPLAYED ===\n" << endl;
+    cout << "=== COMBINATIONS ARE DISPLAYED ===" << endl;
 }
