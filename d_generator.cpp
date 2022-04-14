@@ -56,7 +56,7 @@ void D_BackPack::Print()
     cout << "\n=== OUTPUT OF COMBINATIONS ===\n" << endl;
     for (int i = 0; i <= N; i++)
     {
-        cout << "W = " << i << " : ";
+        cout << "K = " << i << " : ";
         for (int j = 0; j <= W; j++)
         {
             cout << Combinations[i][j] << " ";
