@@ -34,8 +34,10 @@ void D_BackPack::Dinamic()
         {
             Combinations[k][s] = Combinations[k - 1][s];
             if (s >= Result[k - 1].number)
-                Combinations[k][s] = max(Combinations[k][s], Combinations[k][s - Result[k - 1].number] + Result[k - 1].cost);
+                Combinations[k][s] = max(Combinations[k - 1][s], Combinations[k - 1][s - Result[k - 1].number] + Result[k - 1].cost);
+            cout << Combinations[k][s] << " ";
         }
+        cout << endl;
     }
 }
 void D_BackPack::find(int n, int w)
@@ -57,7 +59,7 @@ void D_BackPack::Print()
     for (int i = 0; i <= N; i++)
     {
         cout << "W = " << i << " : ";
-        for (int j = 0; j < W; j++)
+        for (int j = 0; j <= W; j++)
         {
             cout << Combinations[i][j] << " ";
         }
