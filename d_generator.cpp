@@ -34,7 +34,7 @@ void D_BackPack::Dinamic()
         {
             Combinations[k][s] = Combinations[k - 1][s];
             if (s >= Result[k - 1].number)
-                Combinations[k][s] = max(Combinations[k - 1][s], Combinations[k - 1][s - Result[k - 1].number] + Result[k - 1].cost);
+                Combinations[k][s] = max(Combinations[k][s], Combinations[k][s - Result[k - 1].number] + Result[k - 1].cost);
         }
     }
 }
@@ -48,7 +48,7 @@ void D_BackPack::find(int n, int w)
         MAX[0] += Result[n - 1].number;
         MAX[1] += Result[n - 1].cost;
         z += Result[n - 1].name + " ";
-        find(n - 1, w - Result[n - 1].number);
+        find(n, w - Result[n - 1].number);
     }
 }
 void D_BackPack::Print() 
