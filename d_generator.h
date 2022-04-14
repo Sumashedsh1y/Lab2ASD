@@ -24,4 +24,5 @@ public:
     void Dinamic();
     void find(int,int);
     void Print();
+    vector<int> Max();
 };

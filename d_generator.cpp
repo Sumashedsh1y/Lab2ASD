@@ -67,3 +67,7 @@ void D_BackPack::Print()
     cout << "\nThe best option: " << z << "   " << MAX[0] << " " << MAX[1] << " " << endl;
     cout << "\n=== COMBINATIONS ARE DISPLAYED ===\n" << endl;
 }
+vector<int> D_BackPack::Max()
+{
+    return MAX;
+}

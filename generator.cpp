@@ -46,7 +46,6 @@ void BackPack::GoRecursive()
     combo.number = 0;
     combo.cost = 0;
     Algorithm(combo);
-    object maxcombo;
     maxcombo.name = "";
     maxcombo.number = 10;
     maxcombo.cost = 0;
@@ -59,4 +58,8 @@ void BackPack::GoRecursive()
         }
     cout << "\nThe best option: " << maxcombo.name << " " << maxcombo.number << " " << maxcombo.cost << "\n" << endl;
     cout << "=== COMBINATIONS ARE DISPLAYED ===" << endl;
+}
+object BackPack::ReturnMax()
+{
+    return maxcombo;
 }
