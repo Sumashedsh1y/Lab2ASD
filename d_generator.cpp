@@ -47,8 +47,8 @@ void D_BackPack::find(int n, int w)
     if (Combinations[n - 1][w] == Combinations[n][w])
         find(n - 1, w);
     else {
-        MaxN += Result[n - 1].number;
-        MaxW += Result[n - 1].cost;
+        MAX[0] += Result[n - 1].number;
+        MAX[1] += Result[n - 1].cost;
         z += Result[n - 1].name + " ";
         find(n - 1, w - Result[n - 1].number);
     }
@@ -66,6 +66,6 @@ void D_BackPack::Print()
         cout << endl;
     }
     find(N, W);
-    cout << "\nThe best option: " << z << "   " << MaxN << " " << MaxW << " " << endl;
+    cout << "\nThe best option: " << z << "   " << MAX[0] << " " << MAX[1] << " " << endl;
     cout << "\n=== COMBINATIONS ARE DISPLAYED ===\n" << endl;
 }

@@ -11,8 +11,11 @@ struct obj {
     string name;
 };
 class D_BackPack {
+    int MaxN = 0;
+    int MaxW = 0;
 public:
-    int N = 0, W = 0, MaxN = 0, MaxW = 0;
+    int N = 0, W = 0;
+    vector<int> MAX{ MaxN,MaxW };
     string z;
     vector<obj> Result;
     vector<vector<int>> Combinations;
