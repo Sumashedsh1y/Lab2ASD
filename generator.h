@@ -4,16 +4,15 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
-#include <tuple>
 using namespace std;
 struct object {
     int number;
-    double cost;
+    int cost;
     string name;
 };
 class BackPack {
 public:
-    int N, W;
+    int N = 0, W = 0;
     vector<object> Result;
     vector<object> Combinations;
     BackPack() {}

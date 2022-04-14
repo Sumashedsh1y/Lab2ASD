@@ -1,5 +1,6 @@
 #include <iostream>
 #include "generator.h"
+#include "d_generator.h"
 #include <fstream>
 using namespace std;
 
@@ -16,5 +17,10 @@ int main() {
     BackPack a;
     a.ReadInput("D:\\Программирование\\Алгоритмы и структуры данных\\Lab2ASD\\input.txt");
     a.GoRecursive();
+    cout << "\nDINAMIC\n" << endl;
+    D_BackPack d;
+    d.ReadInput("D:\\Программирование\\Алгоритмы и структуры данных\\Lab2ASD\\input.txt");
+    d.Dinamic();
+    d.Print();
     return 0;
 }
