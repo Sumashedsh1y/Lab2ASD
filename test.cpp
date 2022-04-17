@@ -6,12 +6,21 @@
 
 TEST_CASE("Check algoritm", "[backpack]") {
     setlocale(LC_ALL, "Russian");
+    ofstream BP;
+    BP.open("BP.txt");
+    BP << "5" << endl;;
+    BP << "10" << endl;;
+    BP << "куб	4	20" << endl;;
+    BP << "тетраэдр	3	15" << endl;;
+    BP << "сфера	5	30" << endl;;
+    BP << "пирамида	2	20" << endl;;
+    BP << "цилиндр	4	25" << endl;;
     object MaxInput;
     MaxInput.name = " тетраэдр сфера пирамида";
     MaxInput.number = 10;
     MaxInput.cost = 65;
     BackPack a;
-    a.ReadInput("D:\\Программирование\\Алгоритмы и структуры данных\\Lab2ASD\\input.txt");
+    a.ReadInput("BP.txt");
     a.GoRecursive();
     REQUIRE(MaxInput.name == a.ReturnMax().name);
     REQUIRE(MaxInput.number == a.ReturnMax().number);
@@ -20,11 +29,20 @@ TEST_CASE("Check algoritm", "[backpack]") {
 
 TEST_CASE("Check dinamiv algoritm", "[dinamic backpack]") {
     setlocale(LC_ALL, "Russian");
+    ofstream DBP;
+    DBP.open("DBP.txt");
+    DBP << "5" << endl;
+    DBP << "10" << endl;;
+    DBP << "куб	4	20" << endl;;
+    DBP << "тетраэдр	3	15" << endl;;
+    DBP << "сфера	5	30" << endl;;
+    DBP << "пирамида	2	20" << endl;;
+    DBP << "цилиндр	4	25" << endl;;
     vector<int> MaxInput{0,0};
     MaxInput[0] = 10;
     MaxInput[1] = 100;
     D_BackPack d;
-    d.ReadInput("D:\\Программирование\\Алгоритмы и структуры данных\\Lab2ASD\\input.txt");
+    d.ReadInput("DBP.txt");
     d.Dinamic();
     d.Print();
     REQUIRE(MaxInput[0] == d.Max()[0]);
